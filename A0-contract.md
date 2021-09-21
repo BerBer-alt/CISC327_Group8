@@ -56,6 +56,6 @@ Student Number:
 
 Team Member #4:
 
-Name:
+Name: Yifan Zhu
 
-Student Number:	
+Student Number:	20145097
