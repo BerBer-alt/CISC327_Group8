@@ -49,9 +49,9 @@ Student Number:	20182959
 
 Team Member #3:
 
-Name:
+Name: Wenran Hou
 
-Student Number:	
+Student Number:	20144514
 
 
 Team Member #4:
