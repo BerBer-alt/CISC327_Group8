@@ -42,9 +42,9 @@ Student Number:	20164303
 
 Team Member #2:
 
-Name:
+Name: Yiming Zheng
 
-Student Number:	
+Student Number:	20182959
 
 
 Team Member #3:
