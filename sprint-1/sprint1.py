@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(name)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 db = SQLAlchemy(app)
 
@@ -14,7 +14,7 @@ class User(db.Model):
     # balance of the user
     balance = db.Column(db.Integer, unique=False, nullable=True)
 
-    def repr(self):
+    def __repr__(self):
         return '<User %r>' % self.username
 
 
@@ -25,7 +25,7 @@ class Product(db.Model):
     product_price = db.Column(db.Integer, nullable=False)
     product_seller_id = db.Column(db.Integer, unique=False, nullable=True)
 
-    def repr(self):
+    def __repr__(self):
         return "<Product %r>" % self.product_id
 
 
@@ -39,7 +39,7 @@ class shipping(db.Model):
     shipping_receiver = product_name = db.Column(
         db.String(80), unique=False, nullable=False)
 
-    def repr(self):
+    def __repr__(self):
         return "<Shipping %r>" % self.shipping_id
 
 
@@ -50,5 +50,17 @@ class Review(db.Model):
     seller_username = db.Column(db.String(80), unique=True, nullable=False)
     comment = db.Column(db.String(120), unique=True, nullable=False)
 
-    def repr(self):
+    def __repr__(self):
         return '<Review %r>' % self.review_id
+
+
+# the class for transaction objects
+class transaction(db.Model):
+    transaction_id = db.Column(db.Integer, primary_key=True)
+    transaction_product_id = db.Column(db.Integer, unique=True, nullable=False)
+    transaction_price_id = db.Column(db.Integer, unique=True, nullable=False)
+    transaction_buyer_id = db.Column(db.Integer, unique=True, nullable=False)
+    transaction_seller_id = db.Column(db.Integer, unique=True, nullable=False)
+
+    def __repr__(self):
+        return "<Transaction %r>" % self.transaction_id
