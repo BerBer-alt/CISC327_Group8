@@ -9,22 +9,6 @@ This file defines data models and related business logics
 
 # this function check if the Email address inputed fits the format or not
 def check_Email(Input_str: str):
-    if Input_str == "":
-        return False
-    regex = r"(^[a-zA-Z0-9_.+-/!#$%&'*/=?^_`{|}~\" ]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-    if re.search(regex, Input_str) is None:
-        return False
-    domain = Input_str[0:Input_str.index("@")]
-    if domain[0] == "." or domain[-1] == ".":
-        return False
-    if domain.find("\"") != -1:
-        fir_q = domain.find("\"")
-        sec_q = domain.find("\"", fir_q + 1)
-        if sec_q == -1:
-            return False
-        domain = domain[0:fir_q] + domain[sec_q + 1:]
-    if domain.find("..") != -1 or domain.find(" ") != -1:
-        return False
 
     return True
 
