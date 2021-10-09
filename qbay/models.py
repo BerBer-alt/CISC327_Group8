@@ -156,7 +156,7 @@ def update_profile(email, name, shipping_address, postal_code):
 
     # shipping address should not be empty or contain no special charactors
     if (not(shipping_address) or
-        (shipping_address.isalnum() is False)):
+            (shipping_address.isalnum() is False)):
         return False
     # Canadian zip code configuration
     if not((len(re.findall(
