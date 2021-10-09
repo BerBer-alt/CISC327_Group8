@@ -4,6 +4,7 @@ from datetime import datetime
 from qbay.models import Product, User, update_product, update_profile
 from qbay.models import create_product
 
+
 def test_r1_7_user_register():
     '''
     Testing R1-7: If the email has been used, the operation failed.

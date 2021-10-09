@@ -197,7 +197,8 @@ def update_product(title, new_title, description, price):
         return None
     # check if prefix or suffix has space
     if ((len(new_title) != 0) and
-        (new_title[0] == ' ') or (new_title[-1] == ' ')):
+        (new_title[0] == ' ') or
+            (new_title[-1] == ' ')):
         return None
     # check if the title has more than 80 characters
     if len(new_title) > 80:
