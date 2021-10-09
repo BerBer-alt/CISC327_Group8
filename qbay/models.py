@@ -113,6 +113,17 @@ class Product(db.Model):
         return "<Product %r>" % self.id
 
 
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(
+        db.String(120), unique=True, nullable=False)
+    score = db.Column(db.Integer, unique=True, nullable=False)
+    review_text = db.Column(db.String(500), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Review %r>' % self.review_id
+
+
 # create all tables
 db.create_all()
 
