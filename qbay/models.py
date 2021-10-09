@@ -9,14 +9,44 @@ This file defines data models and related business logics
 
 # this function check if the Email address inputed fits the format or not
 def check_Email(Input_str: str):
+    if Input_str == "":
+        return False
+    regex = r"(^[a-zA-Z0-9_.+-/!#$%&'*/=?^_`{|}~\" ]" \
+            r"+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+    if re.search(regex, Input_str) is None:
+        return False
+    domain = Input_str[0:Input_str.index("@")]
+    if domain[0] == "." or domain[-1] == ".":
+        return False
+    if domain.find("\"") != -1:
+        fir_q = domain.find("\"")
+        sec_q = domain.find("\"", fir_q + 1)
+        if sec_q == -1:
+            return False
+        domain = domain[0:fir_q] + domain[sec_q + 1:]
+        if domain.find(".") == -1 and fir_q != 0 and sec_q != len(Input_str):
+            return False
+    if domain.find("..") != -1 or domain.find(" ") != -1:
+        return False
 
     return True
 
 
 # this function check the string that input fits the requirnment or not
 def check_Password(Input_password: str):
-    # not implemented yet
-    return True
+    if Input_password.__len__() < 6:
+        return False
+    Flag_upper = False
+    Flag_lower = False
+    Flag_Spec = False
+    for i in Input_password:
+        if i.isupper():
+            Flag_upper = True
+        elif i.islower():
+            Flag_lower = True
+        elif i in "!\"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~":
+            Flag_Spec = True
+    return Flag_Spec and Flag_lower and Flag_upper
 
 
 # this function check the input string fits the user requirnment or not
@@ -90,9 +120,11 @@ def register(name, email, password):
         username=name,
         email=email,
         password=password,
+        # Shipping address is empty at the time of registration
         shipping_address="",
+        # Postal code is empty at the time of registration
         postal_code="",
-        balance=100)
+        balance=100)        # free $100 dollar signup bonus
     # add it to the current database session
     db.session.add(user)
     # actually save the user object
