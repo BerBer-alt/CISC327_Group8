@@ -70,10 +70,10 @@ def test_r3_2_update_user_profile():
     '''
     assert update_profile("12345@qq.com", 'Tom', '', 'K7L 0Y3') is False
     assert update_profile(
-                        "12345@qq.com",
-                        'Tom',
-                        '123! University Ave',
-                        'K7L 0Y3') is False
+        "12345@qq.com",
+        'Tom',
+        '123! University Ave',
+        'K7L 0Y3') is False
 
 
 def test_r3_3_update_user_profile():
@@ -81,10 +81,10 @@ def test_r3_3_update_user_profile():
     R3-3: Postal code has to be a valid Canadian postal code
     '''
     assert update_profile(
-            "12345@qq.com",
-            'Tom',
-            '123UniversityAve',
-            'K7L 0Y3') is True
+        "12345@qq.com",
+        'Tom',
+        '123UniversityAve',
+        'K7L 0Y3') is True
     assert update_profile(
         "12345@qq.com",
         'Tom',
