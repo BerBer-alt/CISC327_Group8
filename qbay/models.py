@@ -1,10 +1,76 @@
 from qbay import app
 from flask_sqlalchemy import SQLAlchemy
 import re
+from datetime import datetime
 
-'''
-This file defines data models and related business logics
-'''
+
+db = SQLAlchemy(app)
+
+
+# the class for user objects
+class User(db.Model):
+    username = db.Column(
+        db.String(80), nullable=False)
+    email = db.Column(
+        db.String(120), unique=True, nullable=False,
+        primary_key=True)
+    password = db.Column(
+        db.String(120), nullable=False)
+    shipping_address = db.Column(
+        db.String(120), unique=False, nullable=True,
+        primary_key=False)
+    postal_code = db.Column(
+        db.String(120), unique=False, nullable=True,
+        primary_key=False)
+    balance = db.Column(
+        db.Integer,
+        unique=False,
+        nullable=True,
+        primary_key=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+
+# the class for transaction objects
+class Transaction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.String(120), unique=True, nullable=False)
+    product_id = db.Column(db.String(80), unique=True, nullable=False)
+    price = db.Column(db.Integer, unique=False, nullable=False)
+    date = db.Column(db.String(10), unique=False, nullable=False)
+
+    def __repr__(self):
+        return "<Transaction %r>" % self.id
+
+
+# the class for product objects
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), unique=True, nullable=True)
+    description = db.Column(db.String(2000), unique=False, nullable=False)
+    price = db.Column(db.Integer, unique=False, nullable=False)
+    last_modified_date = db.Column(db.String(10), unique=False, nullable=False)
+    owner_email = db.Column(db.String(120), unique=False, nullable=False)
+
+    def __repr__(self):
+        return "<Product %r>" % self.id
+
+
+# the class for review objects
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(
+        db.String(120), unique=True, nullable=False)
+    score = db.Column(db.Integer, unique=True, nullable=False)
+    review_text = db.Column(db.String(500), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Review %r>' % self.review_id
+
+
+# create all tables
+db.create_all()
 
 
 # this function check if the Email address inputed fits the format or not
@@ -61,73 +127,7 @@ def check_Username(Input_Username: str):
     return True
 
 
-db = SQLAlchemy(app)
-
-
-class User(db.Model):
-    username = db.Column(
-        db.String(80), nullable=False)
-    email = db.Column(
-        db.String(120), unique=True, nullable=False,
-        primary_key=True)
-    password = db.Column(
-        db.String(120), nullable=False)
-    shipping_address = db.Column(
-        db.String(120), unique=False, nullable=True,
-        primary_key=False)
-    postal_code = db.Column(
-        db.String(120), unique=False, nullable=True,
-        primary_key=False)
-    balance = db.Column(
-        db.Integer,
-        unique=False,
-        nullable=True,
-        primary_key=False)
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-
-# the class for transaction objects
-class Transaction(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_email = db.Column(db.String(120), unique=True, nullable=False)
-    product_id = db.Column(db.String(80), unique=True, nullable=False)
-    price = db.Column(db.Integer, unique=False, nullable=False)
-    date = db.Column(db.String(10), unique=False, nullable=False)
-
-    def __repr__(self):
-        return "<Transaction %r>" % self.id
-
-
-# the class for product objects
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), unique=True, nullable=True)
-    description = db.Column(db.String(2000), unique=False, nullable=False)
-    price = db.Column(db.Integer, unique=False, nullable=False)
-    last_modified_date = db.Column(db.String(10), unique=False, nullable=False)
-    owner_email = db.Column(db.String(120), unique=False, nullable=False)
-
-    def __repr__(self):
-        return "<Product %r>" % self.id
-
-
-class Review(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_email = db.Column(
-        db.String(120), unique=True, nullable=False)
-    score = db.Column(db.Integer, unique=True, nullable=False)
-    review_text = db.Column(db.String(500), unique=False, nullable=False)
-
-    def __repr__(self):
-        return '<Review %r>' % self.review_id
-
-
-# create all tables
-db.create_all()
-
-
+# functino used to register
 def register(name, email, password):
     '''
     Register a new user
@@ -169,6 +169,7 @@ def register(name, email, password):
     return True
 
 
+# function used to login
 def login(email, password):
     '''
     Check login information
@@ -189,6 +190,7 @@ def login(email, password):
     return valids[0]
 
 
+# creating product and give it with relative information
 def create_product(title, description, price, last_modified_date, owner_email):
     """
     Create a new product.
@@ -246,3 +248,93 @@ def create_product(title, description, price, last_modified_date, owner_email):
     db.session.commit()
 
     return True
+
+
+# using email to find account and update user information
+def update_profile(email, name, shipping_address, postal_code):
+    '''
+    Update user profile
+      Parameters:
+        name (string):              user name
+        shipping_address (string):  shipping address
+        postal_code (string):       postal code
+      Returns:
+        Boolean value, true for successful update otherwise update fails
+    '''
+
+    # shipping address should not be empty or contain no special charactors
+    if (not(shipping_address) or
+            (shipping_address.isalnum() is False)):
+        return False
+    # Canadian zip code configuration
+    if not((len(re.findall(
+        r'[A-Z]{1}[0-9]{1}[A-Z]{1}\s*[0-9]{1}[A-Z]{1}[0-9]{1}',
+            postal_code.upper()))) == 1):
+        return False
+    # user name should not empty and not space at prefix or suffix
+    if (not(name) or len(name) >= 20 or len(name) <= 2 or
+        name[0] == " " or
+        name[-1] == " " or
+            not(all(i.isalnum() or i.isspace() for i in name))):
+        return False
+
+    # overwrite each attribute of the product
+    user = User.query.filter_by(email=email).first()
+    user.name = name
+    user.postal_code = postal_code
+    user.shipping_address = shipping_address
+    db.session.commit()
+
+    return True
+
+
+# using title to find existed product and update prodict informationr
+def update_product(title, new_title, description, price):
+    '''
+    Update Product info
+      Parameters:
+        id (integer):           product id
+        title (string):         product name
+        description (string):   product description
+        price (integer):        product price
+      Returns:
+        Boolean value, true for successful update otherwise update fails
+    '''
+
+    # check if the title of the product is not alphanumeric-only,
+    # and space allowed only
+    if not(all(c.isalnum() or c.isspace() for c in new_title)):
+        return None
+    # check if prefix or suffix has space
+    if ((len(new_title) != 0) and
+        (new_title[0] == ' ') or
+            (new_title[-1] == ' ')):
+        return None
+    # check if the title has more than 80 characters
+    if len(new_title) > 80:
+        return None
+    # check if the length of description is less than 20 characters
+    # or more than 2000 characters
+    if (len(description) < 20) | (len(description) > 2000):
+        return None
+    # check if the length of description is less than the length of title
+    if len(description) < len(new_title):
+        return None
+    # check if the price is less than 10 or more than 10000
+    if (price < 10) | (price > 10000):
+        return None
+
+    # search for product that has the same title and overwrites them
+    product = Product.query.filter_by(title=title).first()
+    # express last modified date in format of dd/mm/yy
+    product.last_modified_date = datetime.today().strftime('%Y-%m-%d')
+    product.title = new_title
+    product.description = description
+    # determine wheather new price is incremental than previous one
+    if (price < product.price):
+        return None
+    else:
+        product.price = price
+    db.session.commit()
+
+    return product
