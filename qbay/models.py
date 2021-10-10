@@ -9,19 +9,25 @@ db = SQLAlchemy(app)
 
 # the class for user objects
 class User(db.Model):
+    # username attribute with 80 maximum string length, can't be empty
     username = db.Column(
         db.String(80), nullable=False)
+    # email attribute with 120 maximum string length, can't be empty
     email = db.Column(
         db.String(120), unique=True, nullable=False,
         primary_key=True)
+    # password attribute with 120 maximum string length, can't be empty
     password = db.Column(
         db.String(120), nullable=False)
+    # shipping address attribute with 120 maximum string length, can be empty
     shipping_address = db.Column(
         db.String(120), unique=False, nullable=True,
         primary_key=False)
+    # postal code attribute with 120 maximum string length, can be empty
     postal_code = db.Column(
         db.String(120), unique=False, nullable=True,
         primary_key=False)
+    # balance attribute as in integer, can be empty
     balance = db.Column(
         db.Integer,
         unique=False,
@@ -32,37 +38,58 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 
-# the class for transaction objects
+# the class for transaction objects, unique=True/False decides if
+# the attribute is unique or not. nullable =True/false decides if the
+# attribute can be empty or not.
 class Transaction(db.Model):
+    # id attribute is the primary key as in integer
     id = db.Column(db.Integer, primary_key=True)
+    # user email attribute with 120 maximum string length
     user_email = db.Column(db.String(120), unique=True, nullable=False)
+    # product id attribute with 80 maximum string length
     product_id = db.Column(db.String(80), unique=True, nullable=False)
+    # price attribute as in integer
     price = db.Column(db.Integer, unique=False, nullable=False)
+    # date attribute with 120 maximum string length
     date = db.Column(db.String(10), unique=False, nullable=False)
 
     def __repr__(self):
         return "<Transaction %r>" % self.id
 
 
-# the class for product objects
+# the class for product objects, unique=True/False decides if
+# # the attribute is unique or not. nullable =True/false decides if the
+# # attribute can be empty or not.
 class Product(db.Model):
+    # id attribute is the primary key as in integer
     id = db.Column(db.Integer, primary_key=True)
+    # title id attribute with 80 maximum string length
     title = db.Column(db.String(80), unique=True, nullable=True)
+    # description attribute with 2000 maximum string length
     description = db.Column(db.String(2000), unique=False, nullable=False)
+    # price attribute as in integer
     price = db.Column(db.Integer, unique=False, nullable=False)
+    # last modified date attribute with 10 maximum string length
     last_modified_date = db.Column(db.String(10), unique=False, nullable=False)
+    # owner_email attribute with 120 maximum string length
     owner_email = db.Column(db.String(120), unique=False, nullable=False)
 
     def __repr__(self):
         return "<Product %r>" % self.id
 
 
-# the class for review objects
+# the class for review objects, unique=True/False decides if
+# # # the attribute is unique or not. nullable =True/false decides if the
+# # # attribute can be empty or not.
 class Review(db.Model):
+    # id attribute is the primary key as in integer
     id = db.Column(db.Integer, primary_key=True)
+    # user_email attribute with 120 maximum string length
     user_email = db.Column(
         db.String(120), unique=True, nullable=False)
+    # score attribute as in integer
     score = db.Column(db.Integer, unique=True, nullable=False)
+    # review text attribute with 500 maximum string length
     review_text = db.Column(db.String(500), unique=False, nullable=False)
 
     def __repr__(self):
@@ -75,36 +102,51 @@ db.create_all()
 
 # this function check if the Email address inputed fits the format or not
 def check_Email(Input_str: str):
+    # email address can't be empty
     if Input_str == "":
         return False
+    # email validation regular expression as in RFC 5322 Policy
     regex = r"(^[a-zA-Z0-9_.+-/!#$%&'*/=?^_`{|}~\" ]" \
             r"+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+    # if the email address does not match the regex return false
     if re.search(regex, Input_str) is None:
         return False
-    domain = Input_str[0:Input_str.index("@")]
-    if domain[0] == "." or domain[-1] == ".":
+    # start and end of the local can't be dot
+    local = Input_str[0:Input_str.index("@")]
+    if local[0] == "." or local[-1] == ".":
         return False
-    if domain.find("\"") != -1:
-        fir_q = domain.find("\"")
-        sec_q = domain.find("\"", fir_q + 1)
+    # A local part is either a Dot-string or a Quoted-string,
+    # not a combination.
+    # quoted strings must be dot separated or the only element
+    # making up the local-part.spaces, quotes, and backslashes may
+    # only exist when within quoted strings and preceded by a backslash
+    # even if escaped (preceded by a backslash), spaces, quotes,
+    # and backslashes must still be contained by quotes
+    if local.find("\"") != -1:
+        fir_q = local.find("\"")
+        sec_q = local.find("\"", fir_q + 1)
         if sec_q == -1:
             return False
-        domain = domain[0:fir_q] + domain[sec_q + 1:]
-        if domain.find(".") == -1 and fir_q != 0 and sec_q != len(Input_str):
+        local = local[0:fir_q] + local[sec_q + 1:]
+        if local.find(".") == -1 and fir_q != 0 and sec_q != len(Input_str):
             return False
-    if domain.find("..") != -1 or domain.find(" ") != -1:
+    if local.find("..") != -1 or local.find(" ") != -1:
         return False
 
     return True
 
 
-# this function check the string that input fits the requirnment or not
+# this function check the input password string fits the requirement or not
 def check_Password(Input_password: str):
+    # the minimum length of input password string should be 6
     if Input_password.__len__() < 6:
         return False
     Flag_upper = False
     Flag_lower = False
     Flag_Spec = False
+    # Password has to meet the required complexity: minimum length 6,
+    # at least one upper case, at least one lower case,
+    # and at least one special character.
     for i in Input_password:
         if i.isupper():
             Flag_upper = True
@@ -117,8 +159,12 @@ def check_Password(Input_password: str):
 
 # this function check the input string fits the user requirnment or not
 def check_Username(Input_Username: str):
+    # User name has to be longer than 2 characters and
+    # less than 20 characters.
     if Input_Username.__len__() <= 2 or Input_Username.__len__() > 20:
         return False
+    # User name has to be non-empty, alphanumeric-only,
+    # and space allowed only if it is not as the prefix or suffix.
     if Input_Username[0] == " " or Input_Username[-1] == " ":
         return False
     for i in Input_Username:
@@ -127,7 +173,7 @@ def check_Username(Input_Username: str):
     return True
 
 
-# functino used to register
+# function used to register as an user with name, email address and password
 def register(name, email, password):
     '''
     Register a new user
@@ -138,7 +184,7 @@ def register(name, email, password):
       Returns:
         True if registration succeeded otherwise False
     '''
-
+    # check user name, email address, and password requirements
     if not check_Username(name):
         return False
     if not check_Email(email):
@@ -160,7 +206,8 @@ def register(name, email, password):
         shipping_address="",
         # Postal code is empty at the time of registration
         postal_code="",
-        balance=100)        # free $100 dollar signup bonus
+        # free $100 dollar signup bonus
+        balance=100)
     # add it to the current database session
     db.session.add(user)
     # actually save the user object
@@ -179,7 +226,7 @@ def login(email, password):
       Returns:
         The user object if login succeeded otherwise None
     '''
-
+    # check email and password requirements
     if not check_Email(email):
         return None
     if not check_Password(password):
