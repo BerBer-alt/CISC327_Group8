@@ -309,7 +309,7 @@ def update_profile(email, name, shipping_address, postal_code):
         Boolean value, true for successful update otherwise update fails
     '''
 
-    # shipping address should not be empty or contain no special charactors
+    # shipping address should not be empty or contain no special characters
     if (not(shipping_address) or
             (shipping_address.isalnum() is False)):
         return False
@@ -335,7 +335,7 @@ def update_profile(email, name, shipping_address, postal_code):
     return True
 
 
-# using title to find existed product and update prodict informationr
+# using title to find existed product and update product information
 def update_product(title, new_title, description, price):
     '''
     Update Product info
@@ -377,8 +377,8 @@ def update_product(title, new_title, description, price):
     product.last_modified_date = datetime.today().strftime('%Y-%m-%d')
     product.title = new_title
     product.description = description
-    # determine wheather new price is incremental than previous one
-    if (price < product.price):
+    # determine whether new price is incremental than previous one
+    if price < product.price:
         return None
     else:
         product.price = price
