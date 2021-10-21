@@ -37,7 +37,6 @@ def profile_update_page(email):
       Parameters: identification email
       Returns: Null
     '''
-    #email = input("Please enter identification email: ")
     name = input("Please change user's name: ")
     shipping_address = input("Please change shipping address: ")
     postal_code = input("Please Change postal code: ")
