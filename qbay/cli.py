@@ -3,12 +3,22 @@ from qbay.models import login, register, create_product, update_profile, \
 
 
 def login_page():
+    '''
+    User login page
+      Parameters: Null
+      Returns: Null
+    '''
     email = input('Please input email: ')
     password = input('Please input password:')
     return login(email, password)
 
 
 def register_page():
+    '''
+    Registration page
+      Parameters: Null
+      Returns: Null
+    '''
     name = input('Please input user name: ')
     email = input('Please input email: ')
     password = input('Please input password: ')
@@ -21,18 +31,27 @@ def register_page():
         print('registration failed.')
 
 
-def profile_update_page():
-    email = input("please input email: ")
-    name = input("please input user's name: ")
-    shipping_address = input("please input shipping address: ")
-    postal_code = input("please input postal code: ")
+def profile_update_page(email):
+    '''
+    Update profile page
+      Parameters: identification email
+      Returns: Null
+    '''
+    name = input("Please change user's name: ")
+    shipping_address = input("Please change shipping address: ")
+    postal_code = input("Please Change postal code: ")
     if update_profile(email, name, shipping_address, postal_code):
-        print("profile updated")
+        print("Profile Updated Successfully!")
     else:
-        print("profile update failed. ")
+        print("Profile Update Failed...")
 
 
 def product_creation_page():
+    '''
+    Create product page
+      Parameters: Null
+      Returns: Null
+    '''
     title = input("please input title: ")
     description = input("please input description: ")
     price = int(input("please input price: "))
@@ -46,6 +65,11 @@ def product_creation_page():
 
 
 def product_update_page():
+    '''
+    Update product page
+      Parameters: Null
+      Returns: Null
+    '''
     title = input("please input former product name: ")
     new_tit = input("please input new product title name: ")
     des = input("please input new product description: ")
