@@ -1,4 +1,5 @@
-from qbay.models import login, register, create_product, update_profile, update_product
+from qbay.models import login, register, create_product, update_profile, \
+    update_product
 
 
 def login_page():
