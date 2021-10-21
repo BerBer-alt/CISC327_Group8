@@ -1,6 +1,6 @@
 from qbay import *
-from qbay.cli import login_page, regsiter_page, profile_update_page
-#from qbay.cli import product_update_page, product_creation_page
+from qbay.cli import login_page, register_page, profile_update_page
+from qbay.cli import product_update_page, product_creation_page
 
 
 def main():
@@ -12,16 +12,16 @@ def main():
             # login situation
             user = login_page()
             if user:
-                print(f'welcome {user.username}')
+                print(f'Welcome back {user.username}')
                 while True:
                     selection = input(
-                        "Please type 1 to update your profile."
-                        "Type 2 to create product."
-                        "Type 3 to update product."
-                        "type something else to exit.")
+                        "Please type 1 to update your profile.\n"
+                        "Type 2 to create product.\n"
+                        "Type 3 to update product.\n"
+                        "Type something else to exit: ")
                     selection = selection.strip()
                     if selection == '1':
-                        profile_update = profile_update_page()
+                        profile_update_page(user.email)
                     elif selection == '2':
                         product_creation_page()
                     elif selection == '3':
@@ -32,7 +32,7 @@ def main():
                 print('login failed')
         elif selection == '2':
             # register situation
-            regsiter_page()
+            register_page()
         else:
             # press other character to stop the program
             break
