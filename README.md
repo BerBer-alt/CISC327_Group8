@@ -8,7 +8,7 @@ This image is the scrum board of A4 (frontend testing).
   <img width="1000"  src="https://github.com/BerBer-alt/CISC327_Group8/blob/c215f3816df3f5dc067e005f058a9e369cc10013/Assign4_Scrum_Board.png">
 </p>
 
-### Daily Scrum - update
+### :beer:Daily Scrum - update
 Each member in the team should at least answer to following questions:
 ```
 1)what is the branch he/she worked on (has to be pushed to the repo).
