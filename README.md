@@ -2,6 +2,7 @@
 
 [![Pytest-All](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml)
 [![Python PEP8](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml)
+
 This image is the scrum board of A4 (frontend testing).
 <p align="center">
   <img width="1000"  src="https://github.com/BerBer-alt/CISC327_Group8/blob/c215f3816df3f5dc067e005f058a9e369cc10013/Assign4_Scrum_Board.png">
