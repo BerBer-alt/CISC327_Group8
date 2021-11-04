@@ -33,6 +33,24 @@ Yucan Li:
 4. Finish all the testing method and make sure all the test can pass.
 ```
 
+Wenran Hou:
+```
+1. I worked on "hwr_sprint4" branch.
+2. Input Partitioning, Input Boundary Testing, and Output Partitioning.
+3. There is no difficulty.
+4. Make sure all tests are completed.
+```
+
+Yiming Zheng:
+```
+1. working on assn_4 branch
+2.inputting existed email and password and inputting email that is not fit the Email requirement
+3. I don't know how to write test code in python, but I am learning.
+4. Finish input partition test and shotgun test tomorrow
+
+```
+
+
 This folder contains the files for A4 (frontend testing). Folder structure:
 
 ```
