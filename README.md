@@ -1,4 +1,4 @@
-# qBay - Python-CL-2021 front-end testing
+# qBay - Python-CLI-2021 front-end testing
 
 [![Pytest-All](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml)
 [![Python PEP8](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml)
