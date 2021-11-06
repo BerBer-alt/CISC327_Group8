@@ -31,7 +31,7 @@ def test_update_product_OutputPartition():
 
     # Output Partition1
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_outputPartition1,
         capture_output=True,
     ).stdout.decode()
@@ -40,7 +40,7 @@ def test_update_product_OutputPartition():
 
     # Output Partition2
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_outputPartition2,
         capture_output=True,
     ).stdout.decode()
