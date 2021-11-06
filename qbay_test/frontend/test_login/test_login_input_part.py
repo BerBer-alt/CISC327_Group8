@@ -24,7 +24,8 @@ expected_out_R3 = open(current_folder.joinpath(
 def test_login_R1():
     """
         R1: A user can log in using her/his email address and the password.
-        The wright input e-mail and password will lead to the right profile page
+        The wright input e-mail and password will lead to the right profile
+        page
     """
     output = subprocess.run(
         ['python', '-m', 'qbay'],
@@ -55,9 +56,10 @@ def test_login_R2():
 
 def test_login_R3():
     """
-                R3: The login function should check if the supplied inputs meet the same email/password requirements as
-                above, before checking the database.
-                The invalid input e-mail and password will lead to the failure
+                R3: The login function should check if the supplied inputs meet the
+                same email/password requirements asabove, before checking the
+                database.The invalid input e-mail and password will lead to the
+                failure
     """
     output = subprocess.run(
         ['python', '-m', 'qbay'],

@@ -77,8 +77,6 @@ def test_login_ro_3():
         capture_output=True,
     ).stdout.decode()
     con = re.sub(r'[\x00-\x1f]', '', output)
-    # print('33@@@@@@@@@@@@@@@@@@@@@@@\n', output)
-    # print("#######################\n", expected_out_3)
     assert con.strip() == expected_out_3.strip()
 
 
