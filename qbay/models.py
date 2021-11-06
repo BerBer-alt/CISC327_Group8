@@ -2,6 +2,7 @@ from qbay import app
 from flask_sqlalchemy import SQLAlchemy
 import re
 from datetime import datetime
+import difflib
 
 
 db = SQLAlchemy(app)
@@ -226,6 +227,8 @@ def login(email, password):
       Returns:
         The user object if login succeeded otherwise None
     '''
+    email = email.strip()
+    password = password.strip()
     # check email and password requirements
     if not check_Email(email):
         return None
@@ -347,15 +350,18 @@ def update_product(title, new_title, description, price):
       Returns:
         Boolean value, true for successful update otherwise update fails
     '''
-
-    # check if the title of the product is not alphanumeric-only,
-    # and space allowed only
-    if not(all(c.isalnum() or c.isspace() for c in new_title)):
-        return None
     # check if prefix or suffix has space
     if ((len(new_title) != 0) and
         (new_title[0] == ' ') or
             (new_title[-1] == ' ')):
+        return None
+        
+    title = title.strip()
+    new_title = new_title.strip()
+
+    # check if the title of the product is not alphanumeric-only,
+    # and space allowed only
+    if not(all(c.isalnum() or c.isspace() for c in new_title)):
         return None
     # check if the title has more than 80 characters
     if len(new_title) > 80:

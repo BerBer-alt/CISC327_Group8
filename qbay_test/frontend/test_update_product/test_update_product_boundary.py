@@ -11,6 +11,7 @@ current_folder = Path(__file__).parent
 # product title is alphanumeric-only, including space
 expected_in_boundary1 = open(current_folder.joinpath(
     'boundary1.in'))
+# print("#####"+expected_in_boundary1.read()+"####")
 # product title's prefix or suffix do not have space
 expected_in_boundary2 = open(current_folder.joinpath(
     'boundary2.in'))
@@ -35,12 +36,12 @@ expected_out_boundary_failed = open(current_folder.joinpath(
     'boundary_failed.out')).read()
 
 # initialise user login and create product
-register('User08', 'user08@hotmail.com', 'Ab2.asd')
-create_product(
-        'apple',
-        'This is a description',
-        10, '2021-10-07',
-        'aa12a@queensu.ca')
+#register('User08', 'user08@hotmail.com', 'Ab2.asd')
+# create_product(
+#         'apple',
+#         'This is a description',
+#         10, '2021-10-07',
+#         'aa12a@queensu.ca')
 
 def test_update_product_boundary():
     """capsys -- object created by pytest to
@@ -48,7 +49,7 @@ def test_update_product_boundary():
 
     # boundary1
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary1,
         capture_output=True,
     ).stdout.decode()
@@ -57,7 +58,7 @@ def test_update_product_boundary():
 
     # boundary2
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary2,
         capture_output=True,
     ).stdout.decode()
@@ -66,7 +67,7 @@ def test_update_product_boundary():
 
     # boundary3
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary3,
         capture_output=True,
     ).stdout.decode()
@@ -75,7 +76,7 @@ def test_update_product_boundary():
 
     # boundary4
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary4,
         capture_output=True,
     ).stdout.decode()
@@ -84,7 +85,7 @@ def test_update_product_boundary():
 
     # boundary5
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary5,
         capture_output=True,
     ).stdout.decode()
@@ -93,7 +94,7 @@ def test_update_product_boundary():
 
     # boundary6
     output = subprocess.run(
-        ['python', '-m', 'qbay'],
+        ['python3', '-m', 'qbay'],
         stdin=expected_in_boundary6,
         capture_output=True,
     ).stdout.decode()
