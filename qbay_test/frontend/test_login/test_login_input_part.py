@@ -56,9 +56,11 @@ def test_login_R2():
 
 def test_login_R3():
     """
-                R3: The login function should check if the supplied inputs meet the
+                R3: The login function should check if the supplied inputs meet
+                the
                 same email/password requirements asabove, before checking the
-                database.The invalid input e-mail and password will lead to the
+                database.
+                The invalid input e-mail and password will lead to the
                 failure
     """
     output = subprocess.run(
