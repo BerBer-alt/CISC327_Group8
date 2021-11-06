@@ -35,13 +35,6 @@ expected_out_boundary_succeed = open(current_folder.joinpath(
 expected_out_boundary_failed = open(current_folder.joinpath(
     'boundary_failed.out')).read()
 
-# initialise user login and create product
-#register('User08', 'user08@hotmail.com', 'Ab2.asd')
-# create_product(
-#         'apple',
-#         'This is a description',
-#         10, '2021-10-07',
-#         'aa12a@queensu.ca')
 
 def test_update_product_boundary():
     """capsys -- object created by pytest to
