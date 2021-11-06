@@ -9,7 +9,7 @@ def main():
     while True:
         # Receive the value of action
         selection = input(
-            'Welcome. Please type 1 to login. Or type 2 register.')
+            'Welcome. Please type 1 to login. Or type 2 to register.')
         selection = selection.strip()
         # The login part
         if selection == '1':
