@@ -42,7 +42,7 @@ def test_update_product_boundary():
 
     # boundary1
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary1,
         capture_output=True,
     ).stdout.decode()
@@ -51,7 +51,7 @@ def test_update_product_boundary():
 
     # boundary2
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary2,
         capture_output=True,
     ).stdout.decode()
@@ -60,7 +60,7 @@ def test_update_product_boundary():
 
     # boundary3
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary3,
         capture_output=True,
     ).stdout.decode()
@@ -69,7 +69,7 @@ def test_update_product_boundary():
 
     # boundary4
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary4,
         capture_output=True,
     ).stdout.decode()
@@ -78,7 +78,7 @@ def test_update_product_boundary():
 
     # boundary5
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary5,
         capture_output=True,
     ).stdout.decode()
@@ -87,7 +87,7 @@ def test_update_product_boundary():
 
     # boundary6
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_boundary6,
         capture_output=True,
     ).stdout.decode()

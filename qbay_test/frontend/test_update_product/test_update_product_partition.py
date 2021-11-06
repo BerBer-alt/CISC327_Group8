@@ -43,7 +43,7 @@ def test_update_product_partition():
 
     # partition1
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition1,
         capture_output=True,
     ).stdout.decode()
@@ -52,7 +52,7 @@ def test_update_product_partition():
 
     # partition2
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition2,
         capture_output=True,
     ).stdout.decode()
@@ -61,7 +61,7 @@ def test_update_product_partition():
 
     # partition3
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition3,
         capture_output=True,
     ).stdout.decode()
@@ -70,7 +70,7 @@ def test_update_product_partition():
 
     # partition4
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition4,
         capture_output=True,
     ).stdout.decode()
@@ -79,7 +79,7 @@ def test_update_product_partition():
 
     # partition5
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition5,
         capture_output=True,
     ).stdout.decode()
@@ -88,7 +88,7 @@ def test_update_product_partition():
 
     # partition6
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition6,
         capture_output=True,
     ).stdout.decode()
@@ -97,7 +97,7 @@ def test_update_product_partition():
 
     # partition7
     output = subprocess.run(
-        ['python3', '-m', 'qbay'],
+        ['python', '-m', 'qbay'],
         stdin=expected_in_partition7,
         capture_output=True,
     ).stdout.decode()
