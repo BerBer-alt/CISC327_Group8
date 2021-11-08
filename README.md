@@ -69,34 +69,11 @@ This folder contains the files for A4 (frontend testing). Folder structure:
 │   ├── conftest.py             ======> Code to run before/after all the testing
 │   ├── frontend                ======> Front End Testing Method
 │   │   ├── __init__.py         ======> Required for a python module (can be empty)
-│   │   └── test_update_product ======> Testing product update
-│   │       ├── __init__.py                 ======> Required for a python module (can be empty)
-│   │       ├── partition1.in               ======> #1 InputFile for Input Partition Testing
-│   │       ├── partition2.in               ======> #2 InputFile for Input Partition Testing
-│   │       ├── partition3.in               ======> #3 InputFile for Input Partition Testing
-│   │       ├── partition4.in               ======> #4 InputFile for Input Partition Testing
-│   │       ├── partition5.in               ======> #5 InputFile for Input Partition Testing
-│   │       ├── partition6.in               ======> #6 InputFile for Input Partition Testing
-│   │       ├── partition7.in               ======> #7 InputFile for Input Partition Testing
-│   │       ├── partition_failed.out        ======> Failed cases OutputFile for Input Partition Testing
-│   │       ├── partition_succeed.out       ======> Succeed cases OutputFile for Input Partition Testing
-│   │       ├── boundary1.in                ======> #1 InputFile for Input Boundary Testing
-│   │       ├── boundary2.in                ======> #2 InputFile for Input Boundary Testing
-│   │       ├── boundary3.in                ======> #3 InputFile for Input Boundary Testing
-│   │       ├── boundary4.in                ======> #4 InputFile for Input Boundary Testing
-│   │       ├── boundary5.in                ======> #5 InputFile for Input Boundary Testing
-│   │       ├── boundary6.in                ======> #6 InputFile for Input Boundary Testing
-│   │       ├── boundary_failed.out         ======> Failed cases OutputFile for Input Boundary Testing
-│   │       ├── boundary_succeed.out        ======> Succeed cases OutputFile for Input Boundary Testing
-│   │       ├── outputPartition1.in         ======> #1 InputFile for Output Partition Testing
-│   │       ├── outputPartition2.in         ======> #2 InputFile for Output Partition Testing
-│   │       ├── outputPartition_failed.out  ======> Failed cases OutputFile for Output Partition Testing
-│   │       ├── outputPartition_succeed.out ======> Succeed cases OutputFile for Output Partition Testing
-│   │       ├── test_update_product.in      ======> InputFile for Testing product update
-│   │       ├── test_update_product.in      ======> OutputFile for Testing product update
-│   │       ├── test_update_product_boundary.py         ======> Python file for Input Boundary Testing
-│   │       ├── test_update_product_outputPartition.py  ======> Python file for Output Partition Testing
-│   │       └── test_update_product_partition.py        ======> Python file for Input Partition Testing
+│   │   └── test_update_product ======> Testing product update (contain 3 black box testing)
+│   │   └── test_register       ======> Testing register (contain 3 black box testing)
+│   │   └── test_login          ======> Testing login (contain 3 black box testing)
+│   │   └── test_register       ======> Testing register (contain 3 black box testing)
+│   │   └── test_create_product ======> Testing product creation (contain 3 black box testing)
 │   └── test_models.py          ======> Testing code for models.py
 └── requirements.txt            ======> Dependencies
 ```
