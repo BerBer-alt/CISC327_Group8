@@ -56,6 +56,9 @@ This folder contains the files for A4 (frontend testing). Folder structure:
 ```
 ├── LICENSE
 ├── README.md
+├── A0-contract.md
+├── Assign4_Scrum_Board.png
+├── Pull_Request_Template.md
 ├── .github
 │   └── workflows
 │       ├── pytest.yml       ======> CI settings for running test automatically (trigger test for commits/pull-requests)
@@ -63,6 +66,7 @@ This folder contains the files for A4 (frontend testing). Folder structure:
 ├── qbay                        ======> Application source code
 │   ├── __init__.py             ======> Required for a python module (can be empty)
 │   ├── __main__.py             ======> Program entry point
+│   ├── cli.py                  ======> command line interface
 │   └── models.py               ======> Data models
 ├── qbay_test                   ======> Testing code
 │   ├── __init__.py             ======> Required for a python module (can be empty)
