@@ -1,6 +1,7 @@
 from os import popen
 from pathlib import Path
 import subprocess
+import re
 
 # get expected input/output file
 current_folder = Path(__file__).parent
@@ -46,8 +47,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 1
-    print('outputs', output1)
-    assert output1.strip() == expected_out_succeed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output1)
+    assert con.strip() == expected_out_succeed.strip()
 
     # test for input partition 2
     output2 = subprocess.run(
@@ -56,8 +57,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 2
-    print('outputs', output2)
-    assert output2.strip() == expected_out_succeed.strip()
+    con2 = re.sub(r'[\x00-\x1f]', '', output2)
+    assert con2.strip() == expected_out_succeed.strip()
 
     # test for input partition 3
     output3 = subprocess.run(
@@ -66,8 +67,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 3
-    print('outputs', output3)
-    assert output3.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output3)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for input partition 4
     output4 = subprocess.run(
@@ -76,8 +77,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 4
-    print('outputs', output4)
-    assert output4.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output4)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for input partition 5
     output5 = subprocess.run(
@@ -86,8 +87,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 5
-    print('outputs', output5)
-    assert output5.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output5)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for input partition 6
     output6 = subprocess.run(
@@ -96,8 +97,8 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 6
-    print('outputs', output6)
-    assert output6.strip() == expected_out_succeed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output6)
+    assert con.strip() == expected_out_succeed.strip()
 
     # test for input partition 7
     output7 = subprocess.run(
@@ -106,5 +107,5 @@ def test_product_creation_input_partition():
         capture_output=True,
     ).stdout.decode()
     # judge the output 7
-    print('outputs', output7)
-    assert output7.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output7)
+    assert con.strip() == expected_out_failed.strip()
