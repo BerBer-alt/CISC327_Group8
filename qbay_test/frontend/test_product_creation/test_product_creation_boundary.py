@@ -1,6 +1,7 @@
 from os import popen
 from pathlib import Path
 import subprocess
+import re
 
 # get expected input/output file
 current_folder = Path(__file__).parent
@@ -40,8 +41,8 @@ def test_product_creation_boundary():
         capture_output=True,
     ).stdout.decode()
     # judge the output 1
-    print('outputs', output1)
-    assert output1.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output1)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for boundary 2
     output2 = subprocess.run(
@@ -50,8 +51,8 @@ def test_product_creation_boundary():
         capture_output=True,
     ).stdout.decode()
     # judge the output 2
-    print('outputs', output2)
-    assert output2.strip() == expected_out_succeed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output2)
+    assert con.strip() == expected_out_succeed.strip()
 
     # test for boundary 3
     output3 = subprocess.run(
@@ -60,8 +61,8 @@ def test_product_creation_boundary():
         capture_output=True,
     ).stdout.decode()
     # judge the output 3
-    print('outputs', output3)
-    assert output3.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output3)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for boundary 4
     output4 = subprocess.run(
@@ -70,8 +71,8 @@ def test_product_creation_boundary():
         capture_output=True,
     ).stdout.decode()
     # judge the output 4
-    print('outputs', output4)
-    assert output4.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output4)
+    assert con.strip() == expected_out_failed.strip()
 
     # test for boundary 5
     output5 = subprocess.run(
@@ -80,5 +81,5 @@ def test_product_creation_boundary():
         capture_output=True,
     ).stdout.decode()
     # judge the output 5
-    print('outputs', output5)
-    assert output5.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output5)
+    assert con.strip() == expected_out_failed.strip()
