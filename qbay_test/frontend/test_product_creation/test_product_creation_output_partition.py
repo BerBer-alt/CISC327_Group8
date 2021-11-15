@@ -1,6 +1,7 @@
 from os import popen
 from pathlib import Path
 import subprocess
+import re
 
 # get expected input/output file
 current_folder = Path(__file__).parent
@@ -32,7 +33,8 @@ def test_product_creation_output_partition():
     ).stdout.decode()
     # judge the output 1
     print('outputs', output1)
-    assert output1.strip() == expected_out_succeed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output1)
+    assert con.strip() == expected_out_succeed.strip()
 
     # test for output partition 2
     output2 = subprocess.run(
@@ -42,4 +44,5 @@ def test_product_creation_output_partition():
     ).stdout.decode()
     # judge the output 2
     print('outputs', output2)
-    assert output2.strip() == expected_out_failed.strip()
+    con = re.sub(r'[\x00-\x1f]', '', output2)
+    assert con.strip() == expected_out_failed.strip()

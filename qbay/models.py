@@ -10,13 +10,14 @@ db = SQLAlchemy(app)
 
 # the class for user objects
 class User(db.Model):
-    # username attribute with 80 maximum string length, can't be empty
-    username = db.Column(
-        db.String(80), nullable=False)
+
     # email attribute with 120 maximum string length, can't be empty
     email = db.Column(
         db.String(120), unique=True, nullable=False,
         primary_key=True)
+    # username attribute with 80 maximum string length, can't be empty
+    username = db.Column(
+        db.String(80), nullable=False)
     # password attribute with 120 maximum string length, can't be empty
     password = db.Column(
         db.String(120), nullable=False)
@@ -330,7 +331,7 @@ def update_profile(email, name, shipping_address, postal_code):
 
     # overwrite each attribute of the product
     user = User.query.filter_by(email=email).first()
-    user.name = name
+    user.username = name
     user.postal_code = postal_code
     user.shipping_address = shipping_address
     db.session.commit()
