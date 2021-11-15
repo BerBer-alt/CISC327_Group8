@@ -16,7 +16,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [ ] PEP8
 - [ ] Test Model
-- [ ] Commend Line Testing
+- [ ] Command Line Testing
 
 **Test Configuration**:
 * System: windows10:
