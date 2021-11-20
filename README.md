@@ -43,10 +43,10 @@ Wenran Hou:
 
 Yiming Zheng:
 ```
-1. working on assn_4 branch
-2.inputting existed email and password and inputting email that is not fit the Email requirement
-3. I don't know how to write test code in python, but I am learning.
-4. Finish input partition test and shotgun test tomorrow
+1.I am working on Reg_test_inj  branch.
+2.I am still writing pytest cases for regoster.
+3.Not any difficulties so far.
+4.It will be finished by tomorrow.
 
 ```
 
