@@ -3,7 +3,7 @@
 [![Pytest-All](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/pytest.yml)
 [![Python PEP8](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml/badge.svg)](https://github.com/BerBer-alt/CISC327_Group8/actions/workflows/style_check.yml)
 
-This image is the scrum board of A4 (frontend testing).
+This image is the scrum board of A5 (Testing & Deployment).
 <p align="center">
   <img width="1000"  src="https://github.com/BerBer-alt/CISC327_Group8/blob/main/Assign5_Scrum_Board1.png">
 </p>
@@ -12,7 +12,7 @@ This image is the scrum board of A4 (frontend testing).
 Each member in the team should at least answer to following questions:
 ```
 1)what is the branch he/she worked on (has to be pushed to the repo).
-2)what is the progress so far (at least some test cases written, more than 2)
+2)what is the progress so far (at least some test cases written/some results/code available)
 3)any difficulties.
 4)what is the plan for the days before the deadline.
 ```
@@ -27,10 +27,10 @@ Yifan Zhu:
 
 Yucan Li:
 ```
-1. I worked on "YBranch4.0" branch.
-2. Input Partitioning, Input Boundary Testing and Output Partitioning
-3. Finding difficult when apply Output Partitioning becasue the output of the update product function is hard to partition.
-4. Finish all the testing method and make sure all the test can pass.
+1. I worked on "YBranch5.0" branch.
+2. Figuring out which the meaning of the Generic_SQLI.txt and continue creating expected testing output for the input file.
+3. Finding difficult when make comparison to the input reulting output and expecting output.
+4. Finish all the testing cases and make sure all the test can pass.
 ```
 
 Wenran Hou:
