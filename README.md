@@ -35,10 +35,10 @@ Yucan Li:
 
 Wenran Hou:
 ```
-1. I worked on "hwr_sprint4" branch.
-2. Input Partitioning, Input Boundary Testing, and Output Partitioning.
-3. There is no difficulty.
-4. Make sure all tests are completed.
+1. I worked on "hwr_sprint5" branch.
+2. I use 'Generic_SQLI.txt' to test create product function.
+3. Compare real outputs with expecting outputs.
+4. Make sure all tests are passed.
 ```
 
 Yiming Zheng:
