@@ -4,13 +4,11 @@ import re
 from datetime import datetime
 import difflib
 
-
 db = SQLAlchemy(app)
 
 
 # the class for user objects
 class User(db.Model):
-
     # email attribute with 120 maximum string length, can't be empty
     email = db.Column(
         db.String(120), unique=True, nullable=False,
@@ -154,7 +152,7 @@ def check_Password(Input_password: str):
             Flag_upper = True
         elif i.islower():
             Flag_lower = True
-        elif i in "!\"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~":
+        elif i in "!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~":
             Flag_Spec = True
     return Flag_Spec and Flag_lower and Flag_upper
 
@@ -254,9 +252,11 @@ def create_product(title, description, price, last_modified_date, owner_email):
       Returns:
         True if creation succeeded otherwise False.
     """
+    if not isinstance(price, int):
+        return False
     # check if the title of the product is not alphanumeric-only,
     # and space allowed only
-    if not(all(c.isalnum() or c.isspace() for c in title)):
+    if not (all(c.isalnum() or c.isspace() for c in title)):
         return False
     # check if prefix or suffix has space
     if (len(title) != 0) and (title[0] == ' ') or (title[-1] == ' '):
@@ -314,19 +314,19 @@ def update_profile(email, name, shipping_address, postal_code):
     '''
 
     # shipping address should not be empty or contain no special characters
-    if (not(shipping_address) or
+    if (not (shipping_address) or
             (shipping_address.isalnum() is False)):
         return False
     # Canadian zip code configuration
-    if not((len(re.findall(
-        r'[A-Z]{1}[0-9]{1}[A-Z]{1}\s*[0-9]{1}[A-Z]{1}[0-9]{1}',
+    if not ((len(re.findall(
+            r'[A-Z]{1}[0-9]{1}[A-Z]{1}\s*[0-9]{1}[A-Z]{1}[0-9]{1}',
             postal_code.upper()))) == 1):
         return False
     # user name should not empty and not space at prefix or suffix
-    if (not(name) or len(name) >= 20 or len(name) <= 2 or
-        name[0] == " " or
-        name[-1] == " " or
-            not(all(i.isalnum() or i.isspace() for i in name))):
+    if (not (name) or len(name) >= 20 or len(name) <= 2 or
+            name[0] == " " or
+            name[-1] == " " or
+            not (all(i.isalnum() or i.isspace() for i in name))):
         return False
 
     # overwrite each attribute of the product
@@ -353,16 +353,16 @@ def update_product(title, new_title, description, price):
     '''
     # check if prefix or suffix has space
     if ((len(new_title) != 0) and
-        (new_title[0] == ' ') or
+            (new_title[0] == ' ') or
             (new_title[-1] == ' ')):
         return None
-        
+
     title = title.strip()
     new_title = new_title.strip()
 
     # check if the title of the product is not alphanumeric-only,
     # and space allowed only
-    if not(all(c.isalnum() or c.isspace() for c in new_title)):
+    if not (all(c.isalnum() or c.isspace() for c in new_title)):
         return None
     # check if the title has more than 80 characters
     if len(new_title) > 80:
