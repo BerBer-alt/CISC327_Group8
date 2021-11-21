@@ -19,10 +19,10 @@ Each member in the team should at least answer to following questions:
 
 Yifan Zhu:
 ```
-1. I worked on "sprint4-Irving" branch.
-2. Input Partitioning, output Partitioning and Input Boundary Testing.
+1. I worked on "sprint5-irving" branch.
+2. Completed setting up docker and docker compose. 
 3. No difficulties so far.
-4. Complete 3 black box testing methods for registering and updating profile.
+4. Set up a meeting and complete code injection testing.
 ```
 
 Yucan Li:
