@@ -1,6 +1,6 @@
 from qbay.models import register, login, create_product
 from qbay.models import update_profile, update_product
-from qbay.models import placing_order
+from qbay.models import Placeorder
 from datetime import datetime
 from typing import Counter
 
@@ -406,26 +406,26 @@ def test_r5_4_update_product():
         1006) is None
 
 
-def test_r6_r1_placing_order():
+def test_r6_r1_Placeorder():
     '''
     R6-1: A user can place an oder on the products.
     '''
-    assert placing_order('user01@example.com', '1') is True
+    assert Placeorder('user01@example.com', '1') is True
 
 
-def test_r6_r2_placing_order():
+def test_r6_r2_Placeorder():
     '''
     R6-1: A user cannot place an order for his/her products.
     '''
     create_product('candy', 'This is a description', 200,
                    '2021-12-04', 'user05@hotmail.com')
-    assert placing_order('user05@hotmail.com', '12') is False
-    assert placing_order('user05@hotmail.com', '12') is False
+    assert Placeorder('user05@hotmail.com', '12') is False
+    assert Placeorder('user05@hotmail.com', '12') is False
 
 
-def test_r6_r3_placing_order():
+def test_r6_r3_Placeorder():
     '''
     R6-1: A user cannot place an order that costs more than his/her balance.
     '''
-    assert placing_order('user07@hotmail.com', '12') is False
+    assert Placeorder('user07@hotmail.com', '12') is False
 
