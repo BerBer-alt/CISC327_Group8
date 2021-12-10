@@ -415,5 +415,5 @@ def Placeorder(buyer_email, product_id):
         db.session.add(new_transaction)
         db.session.commit()
         return True
-    except:
+    except BaseException:
         return False
