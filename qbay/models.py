@@ -392,3 +392,28 @@ def update_product(title, new_title, description, price):
     db.session.commit()
 
     return product
+
+
+def Placeorder(buyer_email, product_id):
+    user_b = User.query.filter_by(email=buyer_email).first()
+    product = Product.query.filter_by(id=product_id).first()
+    try:
+        if buyer_email == product.owner_email:
+            return False
+        if user_b.balance < product.price:
+            return False
+
+        user_b.balance -= product.price
+        product.owner_email = buyer_email
+        date_n = datetime.today().strftime('%Y-%m-%d')
+        new_transaction = Transaction(
+            id=db.session.query(Transaction).count() + 1,
+            user_email=buyer_email,
+            product_id=product_id,
+            price=product.price,
+            date=date_n)
+        db.session.add(new_transaction)
+        db.session.commit()
+        return True
+    except:
+        return False
