@@ -5,7 +5,7 @@
 
 This image is the scrum board of A5 (Testing & Deployment).
 <p align="center">
-  <img width="1000"  src="https://github.com/BerBer-alt/CISC327_Group8/blob/main/Assign5_Scrum_Board1.png">
+  <img width="1000"  src="https://github.com/BerBer-alt/CISC327_Group8/blob/main/Assign6_Scrum_Board.png">
 </p>
 
 ### :beer:Daily Scrum - update
@@ -27,10 +27,10 @@ Yifan Zhu:
 
 Yucan Li:
 ```
-1. I worked on "YBranch5.0" branch.
-2. Figuring out which the meaning of the Generic_SQLI.txt and continue creating expected testing output for the input file.
-3. Finding difficult when make comparison to the input reulting output and expecting output.
-4. Finish all the testing cases and make sure all the test can pass.
+1. I worked on "YBranch6.0" branch.
+2. Finish the front end for the brand new feature and make outstanding progress in security testing
+3. Finding difficult when coding and implement iteration in db database 
+4. Finish all the security testing cases and make sure all the test can pass and no more bugs.
 ```
 
 Wenran Hou:
