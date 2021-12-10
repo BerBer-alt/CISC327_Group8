@@ -35,9 +35,9 @@ Yucan Li:
 
 Wenran Hou:
 ```
-1. I worked on "hwr_sprint5" branch.
-2. I use 'Generic_SQLI.txt' to test create product function.
-3. Compare real outputs with expecting outputs.
+1. I worked on "hwr_sprint6" branch.
+2. Finish tests for the front end part.
+3. No difficulties so far.
 4. Make sure all tests are passed.
 ```
 
