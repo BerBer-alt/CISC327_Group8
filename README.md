@@ -43,8 +43,8 @@ Wenran Hou:
 
 Yiming Zheng:
 ```
-1.I am working on Reg_test_inj  branch.
-2.I am still writing pytest cases for regoster.
+1.I am working on Zym_assin6 branch.
+2.I am still debugging palcing order backend code.
 3.Not any difficulties so far.
 4.It will be finished by tomorrow.
 
