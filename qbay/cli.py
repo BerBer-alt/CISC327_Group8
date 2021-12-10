@@ -1,5 +1,10 @@
-from qbay.models import login, register, create_product, update_profile, \
-    update_product
+from qbay.models import Product, login, register, create_product, \
+    update_profile, update_product, Placeorder, Transaction
+from qbay import app
+from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy(app)
 
 
 # The login part
@@ -89,7 +94,7 @@ def product_update_page():
       Parameters: Null
       Returns: Null
     '''
-    # Read the values of title(use this to confirm the product), new title,
+    # Read the values of title(use this to confirm the product, new title,
     # description and price
     title = input("please input former product name: ")
     new_tit = input("please input new product title name: ")
@@ -103,3 +108,44 @@ def product_update_page():
     # Update successfully
     else:
         print("update succeed")
+
+
+# The product ordering part
+def product_ordering_page(email):  # email="test011@test.com"):
+    '''
+    Ordering product page
+      Parameters: String User Eamil used to identify user's orders
+      Returns: Null
+    '''
+    print("There are products for sale below:")
+    for i in range(1, len(Product.query.all()) + 1):
+        judge = True
+        for j in range(1, len(Transaction.query.all()) + 1):
+            if int(Transaction.query.filter_by(id=j).first().product_id) == i:
+                print("Item is SOLD")
+                judge = False
+                break
+        if judge:
+            print("ID: " + str(Product.query.filter_by(id=i).first().id) +
+                  " " + Product.query.filter_by(id=i).first().title)
+    product_title = input("Please type the product ID to "
+                          "complete your order: ")
+
+    order = Placeorder(email, product_title)
+    if (order):
+        print("Thanks for the purchase!")
+    else:
+        print("You don't have enough balance or cannot buy your own product.")
+
+
+# List all the orders
+def product_ordered_page(email):  # email="test011@test.com"):
+    '''
+    Ordered product page
+      Parameters: String User Eamil used to identify user's orders
+      Returns: Null
+    '''
+    userOrderList = Transaction.query.filter_by(user_email=email).all()
+    for i in userOrderList:
+        order = Product.query.filter_by(id=i.product_id).first()
+        print(order.title + " is bought by " + i.user_email)

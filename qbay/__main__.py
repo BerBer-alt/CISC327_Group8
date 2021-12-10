@@ -1,6 +1,7 @@
 from qbay import *
 from qbay.cli import login_page, register_page, profile_update_page
 from qbay.cli import product_update_page, product_creation_page
+from qbay.cli import product_ordering_page, product_ordered_page
 
 
 # the function of Frontend CLI
@@ -26,6 +27,8 @@ def main():
                         "Please type 1 to update your profile.\n"
                         "Type 2 to create product.\n"
                         "Type 3 to update product.\n"
+                        "Type 4 to place an order.\n"
+                        "Type 5 to list all orders.\n"
                         "Type something else to exit: ")
                     selection = selection.strip()
                     # Update profile part
@@ -37,6 +40,12 @@ def main():
                     # Update product part
                     elif selection == '3':
                         product_update_page()
+                    # Place an order
+                    elif selection == '4':
+                        product_ordering_page(user.email)
+                    # list all orders
+                    elif selection == '5':
+                        product_ordered_page(user.email)
                     # Log out
                     else:
                         break
