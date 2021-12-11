@@ -394,15 +394,29 @@ def update_product(title, new_title, description, price):
     return product
 
 
+# Use user's email and product id to place an order.
 def Placeorder(buyer_email, product_id):
+    '''
+    Place an order.
+      Parameters:
+        buyer_email (string):   buyer's email
+        product_id  (string):   product id
+      Returns:
+        Boolean value, true for successful order otherwise order fails
+    '''
     user_b = User.query.filter_by(email=buyer_email).first()
     product = Product.query.filter_by(id=product_id).first()
     try:
+        # if buyer's email is same as owner's email, buyer cannot buy
+        # this product.
         if buyer_email == product.owner_email:
             return False
+        # if buyer does not have enough money, buyer cannot buy this
+        # product.
         if user_b.balance < product.price:
             return False
 
+        # place an order and put this transaction into the database.
         user_b.balance -= product.price
         product.owner_email = buyer_email
         date_n = datetime.today().strftime('%Y-%m-%d')
